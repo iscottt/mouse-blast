@@ -85,10 +85,10 @@ document.onreadystatechange = () => {
         })
         burst.el.style.top = 0
         burst.el.style.left = 0
-        burst.tune({ x: event.clientX, y: event.clientY })
+        burst.tune({ x: event.pageX, y: event.pageY })
         aperture.el.style.top = 0
         aperture.el.style.left = 0
-        aperture.tune({ x: event.clientX, y: event.clientY })
+        aperture.tune({ x: event.pageX, y: event.pageY })
         bounce = new mojs.Tween({
           duration: 1200,
           onUpdate: (progress) => {
