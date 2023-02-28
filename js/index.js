@@ -114,7 +114,7 @@ document.onreadystatechange = () => {
         })
         new mojs.Timeline().add(burst, aperture, bounce).play()
       }
-      window.addEventListener('click', (event) => createAnimate(event))
+      window.addEventListener('click', (event) => createAnimate(event), true)
     }, 5000);
   }
 }
