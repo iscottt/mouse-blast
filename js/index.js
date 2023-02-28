@@ -71,6 +71,9 @@ document.onreadystatechange = () => {
           opacity: 1,
           // 生成粒子数量
           count: 10,
+          onComplete() {
+            this.el.remove()
+          }
         })
         aperture = new mojs.Transit({
           duration: 750,
@@ -80,8 +83,10 @@ document.onreadystatechange = () => {
           stroke: '#E05B5B',
           strokeWidth: { 20: 0 },
           opacity: 0.6,
-          isRunless: true,
           easing: mojs.easing.bezier(0, 1, 0.5, 1),
+          onComplete() {
+            this.el.remove()
+          }
         })
         burst.el.style.top = 0
         burst.el.style.left = 0
@@ -100,10 +105,16 @@ document.onreadystatechange = () => {
               heartBounce = 0
             }
           },
+          onComplete (isForward, isYoyo) {
+            // 动画执行完毕
+            // this举例，如动画执行完成需要移除DOM
+            burst.el.remove()
+            aperture.el.remove()
+          },
         })
         new mojs.Timeline().add(burst, aperture, bounce).play()
       }
-      window.addEventListener('mousedown', (event) => createAnimate(event))
+      window.addEventListener('click', (event) => createAnimate(event))
     }, 5000);
   }
 }
