@@ -36,7 +36,6 @@ document.onreadystatechange = () => {
       const script = document.createElement('script');
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mo-js/0.288.2/mo.min.js';
       document.body.appendChild(script);
-      let heartBounce = 1
       // let burst, aperture, bounce;
       let burst = ''
       let aperture = ''
@@ -75,44 +74,10 @@ document.onreadystatechange = () => {
             this.el.remove()
           }
         })
-        aperture = new mojs.Transit({
-          duration: 750,
-          type: 'circle',
-          radius: { 0: 20 },
-          fill: 'transparent',
-          stroke: '#E05B5B',
-          strokeWidth: { 20: 0 },
-          opacity: 0.6,
-          easing: mojs.easing.bezier(0, 1, 0.5, 1),
-          onComplete() {
-            this.el.remove()
-          }
-        })
         burst.el.style.top = 0
         burst.el.style.left = 0
         burst.tune({ x: event.pageX, y: event.pageY })
-        aperture.el.style.top = 0
-        aperture.el.style.left = 0
-        aperture.tune({ x: event.pageX, y: event.pageY })
-        bounce = new mojs.Tween({
-          duration: 1200,
-          onUpdate: (progress) => {
-            if (progress > 0.3) {
-              // elastic 弹性的
-              heartBounce = mojs.easing.elastic.out(1.43 * progress - 0.43)
-            }
-            else {
-              heartBounce = 0
-            }
-          },
-          onComplete() {
-            burst.el.remove()
-            aperture.el.remove()
-            const arr = document.querySelectorAll('div[data-name="mojs-shape"]')
-            arr.forEach(i => i.remove())
-          }
-        })
-        new mojs.Timeline().add(burst, aperture, bounce).play()
+        new mojs.Timeline().add(burst).play()
       }
       window.document.addEventListener('click', (event) => createAnimate(event), false)
     }, 5000);
