@@ -3,29 +3,29 @@
 document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
 
-    function makeMulti (string) {
+    function makeMulti(string) {
       let l = new String(string)
       l = l.substring(l.indexOf("/*") + 3, l.lastIndexOf("*/"))
       return l
     }
     let string = function () {
-    /* 
- _____ _____ _____ _____ _____   _____ _____ _   _______ _____ _____ 
-/  ___/  __ \  _  |_   _|_   _| /  ___|_   _| | | |  _  \_   _|  _  |
-\ `--.| /  \/ | | | | |   | |   \ `--.  | | | | | | | | | | | | | | |
- `--. \ |   | | | | | |   | |    `--. \ | | | | | | | | | | | | | | |
-/\__/ / \__/\ \_/ / | |   | |   /\__/ / | | | |_| | |/ / _| |_\ \_/ /
-\____/ \____/\___/  \_/   \_/   \____/  \_/  \___/|___/  \___/ \___/ 
-                                                                     
-                                                                     
- */
+      /* 
+   _____ _____ _____ _____ _____   _____ _____ _   _______ _____ _____ 
+  /  ___/  __ \  _  |_   _|_   _| /  ___|_   _| | | |  _  \_   _|  _  |
+  \ `--.| /  \/ | | | | |   | |   \ `--.  | | | | | | | | | | | | | | |
+   `--. \ |   | | | | | |   | |    `--. \ | | | | | | | | | | | | | | |
+  /\__/ / \__/\ \_/ / | |   | |   /\__/ / | | | |_| | |/ / _| |_\ \_/ /
+  \____/ \____/\___/  \_/   \_/   \____/  \_/  \___/|___/  \___/ \___/ 
+                                                                       
+                                                                       
+   */
     }
     console.log(
       `%c Mouse_blast %c 插件加载中... `,
       'padding: 2px 1px; border-radius: 3px 0 0 3px; color: #fff; background: #35495e; font-weight: bold;',
       'padding: 2px 1px; border-radius: 0 3px 3px 0; color: #fff; background: #41b883; font-weight: bold;',
     );
-    
+
     console.log(`%c ${makeMulti(string)} `, 'color: #165dff; font-weight: bold;');
     setTimeout(() => {
       console.log(
@@ -65,7 +65,7 @@ document.onreadystatechange = () => {
             // 粒子可选色
             fill: ['#1abc9c', '#2ecc71', '#00cec9', '#3498db', '#9b59b6', '#fdcb6e', '#f1c40f', '#e67e22', '#e74c3c', '#e84393'],
             degreeShift: 'rand(-90, 90)',
-            delay: 'stagger(0, 40)',
+            delay: 'stagger(0, 40)'
           },
           // 透明度
           opacity: 1,
@@ -105,16 +105,16 @@ document.onreadystatechange = () => {
               heartBounce = 0
             }
           },
-          onComplete (isForward, isYoyo) {
-            // 动画执行完毕
-            // this举例，如动画执行完成需要移除DOM
+          onComplete() {
             burst.el.remove()
             aperture.el.remove()
-          },
+            const arr = document.querySelectorAll('div[data-name="mojs-shape"]')
+            arr.forEach(i => i.remove())
+          }
         })
         new mojs.Timeline().add(burst, aperture, bounce).play()
       }
-      window.addEventListener('click', (event) => createAnimate(event), true)
+      window.document.addEventListener('click', (event) => createAnimate(event), false)
     }, 5000);
   }
 }
