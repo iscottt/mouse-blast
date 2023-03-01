@@ -33,9 +33,18 @@ document.onreadystatechange = () => {
         'padding: 2px 1px; border-radius: 3px 0 0 3px; color: #fff; background: #35495e; font-weight: bold;',
         'padding: 2px 1px; border-radius: 0 3px 3px 0; color: #fff; background: #41b883; font-weight: bold;',
       );
-      const script = document.createElement('script');
-      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mo-js/0.288.2/mo.min.js';
-      document.body.appendChild(script);
+      const allScript = document.querySelectorAll('script');
+      let hasScript = false
+      allScript.forEach((item) => {
+        if (item.src === 'https://cdnjs.cloudflare.com/ajax/libs/mo-js/0.288.2/mo.min.js') {
+          hasScript = true;
+        }
+      });
+      if (!hasScript) {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mo-js/0.288.2/mo.min.js';
+        document.body.appendChild(script);
+      }
       // let burst, aperture, bounce;
       let burst = ''
       let aperture = ''
@@ -80,7 +89,7 @@ document.onreadystatechange = () => {
         new mojs.Timeline().add(burst).play()
       }
       window.document.addEventListener('click', (event) => createAnimate(event), false)
-    }, 5000);
+    }, 2000);
   }
 }
 
