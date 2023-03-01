@@ -4,10 +4,10 @@ document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
 
     function makeMulti(string) {
-      let l = new String(string)
-      l = l.substring(l.indexOf("/*") + 3, l.lastIndexOf("*/"))
-      return l
-    }
+      let l = new String(string);
+      l = l.substring(l.indexOf("/*") + 3, l.lastIndexOf("*/"));
+      return l;
+    };
     let string = function () {
       /* 
    _____ _____ _____ _____ _____   _____ _____ _   _______ _____ _____ 
@@ -19,7 +19,7 @@ document.onreadystatechange = () => {
                                                                        
                                                                        
    */
-    }
+    };
     console.log(
       `%c Mouse_blast %c 插件加载中... `,
       'padding: 2px 1px; border-radius: 3px 0 0 3px; color: #fff; background: #35495e; font-weight: bold;',
@@ -34,11 +34,11 @@ document.onreadystatechange = () => {
         'padding: 2px 1px; border-radius: 0 3px 3px 0; color: #fff; background: #41b883; font-weight: bold;',
       );
       const allScript = document.querySelectorAll('script');
-      let hasScript = false
+      let hasScript = false;
       allScript.forEach((item) => {
         if (item.src === 'https://cdnjs.cloudflare.com/ajax/libs/mo-js/0.288.2/mo.min.js') {
           hasScript = true;
-        }
+        };
       });
       if (!hasScript) {
         const script = document.createElement('script');
@@ -80,17 +80,17 @@ document.onreadystatechange = () => {
           // 生成粒子数量
           count: 10,
           onComplete() {
-            this.el.remove()
+            this.el.remove();
           }
-        })
-        burst.el.style.top = 0
-        burst.el.style.left = 0
-        burst.tune({ x: event.pageX, y: event.pageY })
-        new mojs.Timeline().add(burst).play()
+        });
+        burst.el.style.top = 0;
+        burst.el.style.left = 0;
+        burst.tune({ x: event.pageX, y: event.pageY });
+        new mojs.Timeline().add(burst).play();
       }
-      window.document.addEventListener('click', (event) => createAnimate(event), false)
+      window.document.addEventListener('click', (event) => createAnimate(event), false);
     }, 2000);
-  }
-}
+  };
+};
 
 
